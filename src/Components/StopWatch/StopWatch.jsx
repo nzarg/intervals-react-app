@@ -144,7 +144,7 @@ function StopWatch() {
 	};
 
 	return (
-		<div id="stop-watch" className="stop-watch w-100 h-100">
+		<div id="stop-watch" className="stop-watch">
 			<Menu
 				goBack={goBack} 
 				handleCountdown={handleCountdown}
@@ -153,7 +153,7 @@ function StopWatch() {
 				handleStopwatch={handleStopwatch}
 			/>
 			{goBack ? (
-				<div className="w-100 h-90">
+				<div className="container">
 					<CurrentTimer 
 						currentActivity={currentActivity} 
 						isInterval={isInterval}
