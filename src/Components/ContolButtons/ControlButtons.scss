@@ -1,0 +1,61 @@
+.control-buttons {
+  display: flex;
+  flex-direction: column-reverse;
+  height: 25vh;
+  width: 100%;
+}
+
+.btn-grp {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-time {
+  padding: 2% 0;
+  width: 30%;
+}
+
+.btn-loops{
+  width: 100%;
+}
+.btn {
+  align-items: center;
+  background-color: rgb(255 255 255 / 38%);
+  border-radius: 10vh;
+  color: #f5f5f5;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-text {
+  height: 10vh;
+  margin: 2% 0;
+  min-width: 35vw;
+  padding: 0 5%;
+}
+
+.btn-small {
+  padding: 5% 16% 7% 16%;
+  margin: 0 1%;
+}
+
+.btn-small-loops {
+  margin: 2% 1%;
+  padding: 2% 7%;
+}
+.btn-menu {
+  font-size: 1.5rem;
+  margin: 5% 0;
+  min-width: 70vw;
+  min-height: 10vh;
+}
+
+.btn-wide {
+  min-width: 48vw;
+}
+
+.red-back{
+  background-color: #e42a2a;
+}

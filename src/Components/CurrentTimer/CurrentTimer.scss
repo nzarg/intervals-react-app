@@ -1,0 +1,41 @@
+.current-timer{
+	align-items: center;
+	height: 20vh;
+	display: flex;
+  flex-direction: column;
+	justify-content: center;
+	width: 100%;
+	color: #f5f5f5;
+}
+.current-timer .clock{
+	display: flex;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+	padding: 2% 0;
+	width: 40%;
+	justify-content: center;
+}
+.current-timer .digits{
+	font-size: 4rem;
+
+}
+
+.current-timer .mili-sec{
+	color: #e42a2a;
+	padding-right: 5%;
+}
+
+.current-timer .activity {
+	background: transparent;
+	border: none;
+  color:#f5f5f5;
+	font-weight: bold;
+	font-size: 3rem;
+	outline: none;
+	text-transform: uppercase;
+  text-align: center;
+	width: 100%;
+}
+
+.current-timer .activity::placeholder {
+	color: #f5f5f5;
+}
