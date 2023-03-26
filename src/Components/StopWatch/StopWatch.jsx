@@ -83,6 +83,7 @@ function StopWatch() {
 		setIsStopwatch(false);
 		setTimersArray([300000])
 		setTime(0);
+		setLoops(1);
 		setGoBack(true);
 		backgroundIsBlack();
 	};

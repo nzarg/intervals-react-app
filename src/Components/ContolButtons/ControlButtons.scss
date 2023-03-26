@@ -1,6 +1,7 @@
 .control-buttons {
   display: flex;
   flex-direction: column-reverse;
+  height: 30vh;
   width: 100%;
 }
 
@@ -29,26 +30,34 @@
 }
 
 .btn-text {
+  font-size: 2.5vh;
   height: 10vh;
-  margin: 2% 0;
+  margin: 2% 1%;
   min-width: 35vw;
   padding: 0 5%;
 }
 
 .btn-small {
-  padding: 5% 16% 7% 16%;
+  font-size: 2.5vh;
   margin: 0 1%;
+  padding: 5% 16% 7% 16%;
 }
 
 .btn-small-loops {
+  font-size: 2.5vh;
   margin: 2% 1%;
   padding: 2% 7%;
 }
 .btn-menu {
-  font-size: 1.5rem;
+  font-size: 3vh;
   margin: 5% 0;
   min-width: 70vw;
   min-height: 10vh;
+}
+
+.btn-wider {
+  min-height: 5vh;
+  min-width: 15vh;
 }
 
 .btn-wide {

@@ -66,13 +66,13 @@ export default function Timer(props) {
 				</div>) : ""
 			}
 			{/* I should use isIntervals */}
-			{!props.isStopwatch ? (
+			{props.isInterval || props.isCountdown? (
 				<div className="btn-grp btn-time">
-					<div className="btn btn-small"
+					<div className={`btn btn-small${props.isCountdown?' btn-wider':''}`}
 						onClick={() => props.handleIncreaseTime(props.index)}>
 						+
 					</div>
-					<div className="btn btn-small"
+					<div className={`btn btn-small${props.isCountdown?' btn-wider':''}`}
 						onClick={() => props.handleDecreaseTime(props.index)}>
 						-
 					</div>
