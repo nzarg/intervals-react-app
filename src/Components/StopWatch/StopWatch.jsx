@@ -39,6 +39,13 @@ function StopWatch() {
 		document.getElementById("stop-watch").classList.remove('finish');
 	}
 
+	useEffect(() => {
+		if (document.getElementById('timers')) {
+			var elem = document.getElementById('timers');
+			elem.scrollTop = elem.scrollHeight;
+		}
+	}, [timersArray])
+
 	const handleStart = () => {
 		setIsActive(true);
 		setIsPaused(false);
@@ -53,17 +60,25 @@ function StopWatch() {
 		setIsPaused(true);
 		setIsActive(false);
 		setTime(0);
-		if(isStopwatch){
+		if (isStopwatch) {
 			setTimersArray([])
 		}
 	};
 
 	const handleLap = () => {
 		if (isActive) {
+			let lapTotal = 0;
+			for (let i = 0; i < timersArray.length; i++) {
+				lapTotal += timersArray[i];
+			}
 			setTimersArray(timersArray => {
-				return [...timersArray, time]
-			})
-		}
+				return [...timersArray, time - lapTotal]
+			});
+			if (timersArray.length > 1) {
+				let bestLapIndex = timersArray.indexOf(Math.min.apply(null, timersArray));
+				document.getElementById(`timer-${bestLapIndex}`).classList.add('bestLap');
+			}
+		};
 	};
 
 	const handleStopwatch = () => {
@@ -92,7 +107,8 @@ function StopWatch() {
 		setIsCountdown(false);
 		setIsInterval(true);
 		setIsStopwatch(false);
-		setTimersArray([2000, 2000, 2000])
+		setActivitiesArray(['squats', 'rest'])
+		setTimersArray([2000, 2000])
 		setTime(0);
 		setGoBack(true);
 		backgroundIsBlack();
@@ -107,7 +123,8 @@ function StopWatch() {
 	const handleAddTimer = () => {
 		setTimersArray(timersArray => {
 			return [...timersArray, 0]
-		})
+		});
+
 	};
 
 	const handleRemoveTimer = () => {
@@ -147,7 +164,7 @@ function StopWatch() {
 	return (
 		<div id="stop-watch" className="stop-watch">
 			<Menu
-				goBack={goBack} 
+				goBack={goBack}
 				handleCountdown={handleCountdown}
 				handleGoBack={handleGoBack}
 				handleIntevals={handleIntevals}
@@ -155,12 +172,12 @@ function StopWatch() {
 			/>
 			{goBack ? (
 				<div className="container">
-					<CurrentTimer 
-						currentActivity={currentActivity} 
+					<CurrentTimer
+						currentActivity={currentActivity}
 						isInterval={isInterval}
 						isStopwatch={isStopwatch}
 						setCurrentTimer={setCurrentTimer}
-						timer={isStopwatch? time : currentTimer}
+						timer={isStopwatch ? time : currentTimer}
 					/>
 					<Timers
 						activitiesArray={activitiesArray}

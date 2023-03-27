@@ -1,5 +1,6 @@
 .timer{
 	align-items: center;
+	border-radius: 10vh;
 	color: #f5f5f5;
 	min-height: 10vh;
 	display: flex;
@@ -36,4 +37,12 @@
 
 .activity::placeholder {
 	color: #f5f5f5;
+}
+
+.bestLap{
+	background-color: green;
+}
+
+.worstLap{
+	background-color: red;
 }

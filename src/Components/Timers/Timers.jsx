@@ -4,7 +4,7 @@ import "./Timers.scss";
 
 export default function Timers(props) {
   return (
-    <div className="timers">
+    <div id="timers" className="timers">
       {props.timersArray.map((countdown, index) => {
         return (
           <Timer
