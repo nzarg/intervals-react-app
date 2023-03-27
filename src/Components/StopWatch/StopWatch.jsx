@@ -8,6 +8,7 @@ import "./StopWatch.scss";
 
 function StopWatch() {
 	const [activitiesArray, setActivitiesArray] = useState([]);
+	const [bestLapIndex, setBestLapIndex] = useState(0);
 	const [currentActivity, setCurrentActivity] = useState('activity');
 	const [currentTimer, setCurrentTimer] = useState(0);
 	const [goBack, setGoBack] = useState(false);
@@ -19,6 +20,7 @@ function StopWatch() {
 	const [loops, setLoops] = useState(2);
 	const [time, setTime] = useState(0);
 	const [timersArray, setTimersArray] = useState([0]);
+	const [worstLapIndex, setWorstLapIndex] = useState(0);
 
 	useEffect(() => {
 		let interval = null;
@@ -43,8 +45,24 @@ function StopWatch() {
 		if (document.getElementById('timers')) {
 			var elem = document.getElementById('timers');
 			elem.scrollTop = elem.scrollHeight;
-		}
-	}, [timersArray])
+		};
+		if(isStopwatch){
+			if(timersArray.length>1){
+				const bestLapArray = document.getElementsByClassName("bestLap");
+				for (let i = 0; i < bestLapArray.length; i++) {
+					bestLapArray[i].classList.remove("bestLap");
+				};
+				const worstLapArray = document.getElementsByClassName("worstLap");
+				for (let i = 0; i < worstLapArray.length; i++) {
+					worstLapArray[i].classList.remove("worstLap");
+				};
+				setBestLapIndex(timersArray.indexOf(Math.min.apply(null, timersArray)));
+				setWorstLapIndex(timersArray.indexOf(Math.max.apply(null, timersArray)));
+				document.getElementById(`timer-${bestLapIndex}`).classList.add('bestLap');
+				document.getElementById(`timer-${worstLapIndex}`).classList.add('worstLap');		
+			};
+		};
+	}, [bestLapIndex, isStopwatch, timersArray, worstLapIndex])
 
 	const handleStart = () => {
 		setIsActive(true);
@@ -62,7 +80,7 @@ function StopWatch() {
 		setTime(0);
 		if (isStopwatch) {
 			setTimersArray([])
-		}
+		};
 	};
 
 	const handleLap = () => {
@@ -70,13 +88,11 @@ function StopWatch() {
 			let lapTotal = 0;
 			for (let i = 0; i < timersArray.length; i++) {
 				lapTotal += timersArray[i];
-			}
+			};
 			setTimersArray(timersArray => {
 				return [...timersArray, time - lapTotal]
 			});
-			if (timersArray.length > 1) {
-				let bestLapIndex = timersArray.indexOf(Math.min.apply(null, timersArray));
-				document.getElementById(`timer-${bestLapIndex}`).classList.add('bestLap');
+			if(timersArray.length>1){
 			}
 		};
 	};
