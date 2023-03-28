@@ -47,7 +47,7 @@ function StopWatch() {
 			elem.scrollTop = elem.scrollHeight;
 		};
 		if(isStopwatch){
-			if(timersArray.length>1){
+			if(timersArray.length>2){
 				const bestLapArray = document.getElementsByClassName("bestLap");
 				for (let i = 0; i < bestLapArray.length; i++) {
 					bestLapArray[i].classList.remove("bestLap");
@@ -56,8 +56,11 @@ function StopWatch() {
 				for (let i = 0; i < worstLapArray.length; i++) {
 					worstLapArray[i].classList.remove("worstLap");
 				};
-				setBestLapIndex(timersArray.indexOf(Math.min.apply(null, timersArray)));
-				setWorstLapIndex(timersArray.indexOf(Math.max.apply(null, timersArray)));
+				setBestLapIndex(timersArray.indexOf(Math.min(...timersArray)));
+				setWorstLapIndex(timersArray.indexOf(Math.max(...timersArray)));
+				console.log(timersArray);
+				console.log(bestLapIndex);
+				console.log(worstLapIndex);
 				document.getElementById(`timer-${bestLapIndex}`).classList.add('bestLap');
 				document.getElementById(`timer-${worstLapIndex}`).classList.add('worstLap');		
 			};
@@ -85,6 +88,8 @@ function StopWatch() {
 
 	const handleLap = () => {
 		if (isActive) {
+			setBestLapIndex(0);
+			setWorstLapIndex(0);
 			let lapTotal = 0;
 			for (let i = 0; i < timersArray.length; i++) {
 				lapTotal += timersArray[i];
