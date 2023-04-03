@@ -28,34 +28,9 @@ export default function ControlButtons(props) {
 		</div>
 	);
 
-	const TimersButtons = (
-		<div className="btn-grp btn-loops">
-			<div className="btn btn-small-loops"
-				onClick={props.handleAddTimer}>
-				+
-			</div>
-			<div className="btn btn-small-loops"
-				onClick={props.handleRemoveTimer}>
-				-
-			</div>
-			<div className="btn btn-small-loops">
-				{props.loops}
-			</div>
-			<div className="btn btn-small-loops"
-				onClick={props.handleAddLoop}>
-				+
-			</div>
-			<div className="btn btn-small-loops"
-				onClick={props.handleRemoveLoop}>
-				-
-			</div>
-		</div>
-	);
-
 	return (
 		<div className="control-buttons">
 			{props.active ? ActiveButtons : StartButton}
-			{props.isInterval ? TimersButtons : ""}
 		</div>
 	);
 }

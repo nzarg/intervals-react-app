@@ -1,7 +1,7 @@
 .control-buttons {
   display: flex;
-  flex-direction: column-reverse;
-  height: 20vh;
+  flex-direction: column;
+  height: 10vh;
   width: 100%;
 }
 
@@ -17,6 +17,7 @@
 }
 
 .btn-loops{
+  border-bottom: 1px white solid;
   width: 100%;
 }
 .btn {
@@ -53,16 +54,11 @@
   font-size: 3vh;
   margin: 5% 0;
   min-width: 70vw;
-  min-height: 25vh;
-}
-
-.btn-wider {
-  min-height: 5vh;
-  min-width: 15vh;
+  min-height: 20vh;
 }
 
 .btn-wide {
-  min-width: 48vw;
+  min-width: 54vw;
 }
 
 .red-back{

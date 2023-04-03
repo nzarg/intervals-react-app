@@ -9,7 +9,7 @@ import "./StopWatch.scss";
 function StopWatch() {
 	const [activitiesArray, setActivitiesArray] = useState([]);
 	const [bestLapIndex, setBestLapIndex] = useState(0);
-	const [currentActivity, setCurrentActivity] = useState('activity');
+	const [currentIndex, setCurrentIndex] = useState(0);
 	const [currentTimer, setCurrentTimer] = useState(0);
 	const [goBack, setGoBack] = useState(false);
 	const [isActive, setIsActive] = useState(false);
@@ -145,11 +145,15 @@ function StopWatch() {
 		setTimersArray(timersArray => {
 			return [...timersArray, 0]
 		});
+		setActivitiesArray(activitiesArray => {
+			return [...activitiesArray, "ACTIVITY"]
+		});
 
 	};
 
-	const handleRemoveTimer = () => {
-		setTimersArray(timersArray.slice(0, timersArray.length - 1))
+	const handleRemoveTimer = (index) => {
+		setTimersArray(timersArray.filter((_,i)=> i !==index));
+		setActivitiesArray(activitiesArray.filter((_,i)=> i !==index));
 	};
 
 	const handleIncreaseTime = (index) => {
@@ -194,15 +198,19 @@ function StopWatch() {
 			{goBack ? (
 				<div className="container">
 					<CurrentTimer
-						currentActivity={currentActivity}
+						activitiesArray={activitiesArray}
+						currentIndex={currentIndex}
+						isActive={isActive}
 						isInterval={isInterval}
 						isStopwatch={isStopwatch}
+						loops={loops}
 						setCurrentTimer={setCurrentTimer}
+						setLoops={setLoops}
 						timer={isStopwatch ? time : currentTimer}
 					/>
 					<Timers
 						activitiesArray={activitiesArray}
-						currentActivity={currentActivity}
+						currentIndex={currentIndex}
 						currentTimer={currentTimer}
 						handleAddLoop={handleAddLoop}
 						handleAddTimer={handleAddTimer}
@@ -218,7 +226,7 @@ function StopWatch() {
 						isStopwatch={isStopwatch}
 						loops={loops}
 						setActivitiesArray={setActivitiesArray}
-						setCurrentActivity={setCurrentActivity}
+						setCurrentIndex={setCurrentIndex}
 						setCurrentTimer={setCurrentTimer}
 						setLoops={setLoops}
 						time={time}
