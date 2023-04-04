@@ -6,7 +6,7 @@ export default function Timers(props) {
   const LoopButtons = (
 		<div className="btn-grp btn-loops">
 			<div className="activity">
-				SETS:	{props.loops}
+				SETS:	{props.totalSets}
 			</div>
 			<div className="btn btn-small-loops"
 				onClick={props.handleAddLoop}>
@@ -22,28 +22,22 @@ export default function Timers(props) {
   return (
     <div id="timers" className="timers">
       {props.isInterval? LoopButtons: ""}
-      {props.timersArray.map((countdown, index) => {
+      {props.timersArray.map((timer, index) => {
         return (
           <Timer
-            countdown={countdown}
+            handleActivityChange={props.handleActivityChange}
             handleDecreaseTime={props.handleDecreaseTime}
             handleIncreaseTime={props.handleIncreaseTime}
             handleRemoveTimer={props.handleRemoveTimer}
-            handleReset={props.handleReset}
-            handleStart={props.handleStart}
             index={index}
-            isActive={props.isActive}
             isCountdown={props.isCountdown}
             isInterval={props.isInterval}
             isStopwatch={props.isStopwatch}
             key={`Timer${index}`}
-            loops={props.loops}
             activitiesArray={props.activitiesArray}
-            setActivitiesArray={props.setActivitiesArray}
             setCurrentIndex={props.setCurrentIndex}
             setCurrentTimer={props.setCurrentTimer}
-            setLoops={props.setLoops}
-            time={props.time}
+            timer={timer}
             timersArray={props.timersArray}
           />
         )

@@ -1,8 +1,8 @@
 import React from "react";
+import TimerDisplay from "../TimerDisplay/TimerDisplay";
 import "./Timer.scss";
 
-export default function Timer(props) {
-
+export default function Timer(props) {	
 	return (
 		<div id={"timer-" + props.index} className="timer">
 			{props.isStopwatch ? (
@@ -30,27 +30,18 @@ export default function Timer(props) {
 					className="activity" 
 					placeholder="Activity" 
 					maxLength="9" 
-					onChange={props.handleChange} 
+					onChange={(event)=>props.handleActivityChange(event, props.index)} 
 					value={props.activitiesArray[props.index]}
 					onClick={(e)=>e.target.select()}
 				/>
 			) : ""
 			}
 			{props.isInterval || props.isStopwatch ? (
-				<div className="clock">
-					<span className="digits">
-						{("0" + Math.floor((props.timer / 60000) % 60)).slice(-2)}:
-					</span>
-					<span className="digits">
-						{("0" + Math.floor((props.timer / 1000) % 60)).slice(-2)}
-					</span>
-					{props.isStopwatch?(
-						<span className="digits">
-							.{("0" + ((props.timer / 10) % 100)).slice(-2)}
-						</span>
-					):""}
-					
-				</div>) : ""
+				<TimerDisplay 
+					timer={props.timer}
+					miliseconds={props.isStopwatch}
+				/>
+				) : ""
 			}
 			{props.isInterval || props.isCountdown? (
 				<div className="btn-grp btn-time">

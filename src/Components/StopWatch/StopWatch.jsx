@@ -17,7 +17,8 @@ function StopWatch() {
 	const [isInterval, setIsInterval] = useState(false);
 	const [isPaused, setIsPaused] = useState(true);
 	const [isStopwatch, setIsStopwatch] = useState(false);
-	const [loops, setLoops] = useState(2);
+	const [sets, setSets] = useState(0);
+	const [totalSets, setTotalSets] = useState(0);
 	const [time, setTime] = useState(0);
 	const [timersArray, setTimersArray] = useState([0]);
 	const [worstLapIndex, setWorstLapIndex] = useState(0);
@@ -29,6 +30,7 @@ function StopWatch() {
 			interval = setInterval(() => {
 				setTime((time) => time + 10);
 			}, 10);
+
 		} else {
 			clearInterval(interval);
 		}
@@ -41,13 +43,14 @@ function StopWatch() {
 		document.getElementById("stop-watch").classList.remove('finish');
 	}
 
+	//Stopwatch logic
 	useEffect(() => {
 		if (document.getElementById('timers')) {
 			var elem = document.getElementById('timers');
 			elem.scrollTop = elem.scrollHeight;
 		};
-		if(isStopwatch){
-			if(timersArray.length>2){
+		if (isStopwatch) {
+			if (timersArray.length > 2) {
 				const bestLapArray = document.getElementsByClassName("bestLap");
 				for (let i = 0; i < bestLapArray.length; i++) {
 					bestLapArray[i].classList.remove("bestLap");
@@ -58,15 +61,47 @@ function StopWatch() {
 				};
 				setBestLapIndex(timersArray.indexOf(Math.min(...timersArray)));
 				setWorstLapIndex(timersArray.indexOf(Math.max(...timersArray)));
-				console.log(timersArray);
-				console.log(bestLapIndex);
-				console.log(worstLapIndex);
 				document.getElementById(`timer-${bestLapIndex}`).classList.add('bestLap');
-				document.getElementById(`timer-${worstLapIndex}`).classList.add('worstLap');		
+				document.getElementById(`timer-${worstLapIndex}`).classList.add('worstLap');
 			};
 		};
-	}, [bestLapIndex, isStopwatch, timersArray, worstLapIndex])
+	}, [bestLapIndex, isStopwatch, timersArray, worstLapIndex]);
 
+	// Intervals Logic	
+	const timerLogic = () => {
+		let timer = 0;
+		if (isStopwatch) {
+			timer = time
+		};
+
+		if (isCountdown) {
+			timer = timersArray[currentIndex] - time;
+		};
+
+		if (isInterval) {
+			let totalIntervalsIndex = 0;
+			if (timersArray.length === currentIndex) {
+				if (sets < totalSets -1) {
+					setSets(sets + 1);
+					setCurrentIndex(0);
+					setTime(0);
+				} else {
+					handleReset();
+					const stopWatch = document.getElementById("stop-watch");
+					stopWatch.classList.add('finish');
+				}
+			};
+			for (let i = 0; i <= currentIndex; i++) {
+				totalIntervalsIndex += timersArray[i]
+			}
+			timer = totalIntervalsIndex - time;
+			if (timer === 0 && isActive) {
+				setCurrentIndex(currentIndex => currentIndex + 1);
+			};
+		};
+		return timer
+	};
+	
 	const handleStart = () => {
 		setIsActive(true);
 		setIsPaused(false);
@@ -78,8 +113,10 @@ function StopWatch() {
 	};
 
 	const handleReset = () => {
+		setCurrentIndex(0);
 		setIsPaused(true);
 		setIsActive(false);
+		setSets(0);
 		setTime(0);
 		if (isStopwatch) {
 			setTimersArray([])
@@ -97,7 +134,7 @@ function StopWatch() {
 			setTimersArray(timersArray => {
 				return [...timersArray, time - lapTotal]
 			});
-			if(timersArray.length>1){
+			if (timersArray.length > 1) {
 			}
 		};
 	};
@@ -119,7 +156,7 @@ function StopWatch() {
 		setIsStopwatch(false);
 		setTimersArray([300000])
 		setTime(0);
-		setLoops(1);
+		setSets(1);
 		setGoBack(true);
 		backgroundIsBlack();
 	};
@@ -131,6 +168,7 @@ function StopWatch() {
 		setActivitiesArray(['squats', 'rest'])
 		setTimersArray([2000, 2000])
 		setTime(0);
+		setTotalSets(2);
 		setGoBack(true);
 		backgroundIsBlack();
 	};
@@ -152,8 +190,8 @@ function StopWatch() {
 	};
 
 	const handleRemoveTimer = (index) => {
-		setTimersArray(timersArray.filter((_,i)=> i !==index));
-		setActivitiesArray(activitiesArray.filter((_,i)=> i !==index));
+		setTimersArray(timersArray.filter((_, i) => i !== index));
+		setActivitiesArray(activitiesArray.filter((_, i) => i !== index));
 	};
 
 	const handleIncreaseTime = (index) => {
@@ -177,14 +215,30 @@ function StopWatch() {
 	};
 
 	const handleAddLoop = () => {
-		setLoops(loops => loops + 1);
+		setTotalSets(totlaSets => totalSets + 1);
 	};
 
 	const handleRemoveLoop = () => {
-		if (loops > 1) {
-			setLoops(loops => loops - 1);
+		if (totalSets > 1) {
+			setTotalSets(totalSets => totalSets - 1);
 		}
 	};
+
+	const handleActivityChange = (e, index) => {
+		const newArray = [
+			...activitiesArray.slice(0, index),
+			e.target.value,
+			...activitiesArray.slice(index + 1)
+		];
+		setActivitiesArray(newArray);
+		console.log(activitiesArray)
+	};
+	const intervalsTotal = timersArray.reduce((a,b)=>a+b,0);
+
+	const timeElapsed = intervalsTotal * sets + time;
+	
+	const timeRemaining = intervalsTotal * totalSets - timeElapsed;
+
 
 	return (
 		<div id="stop-watch" className="stop-watch">
@@ -197,41 +251,46 @@ function StopWatch() {
 			/>
 			{goBack ? (
 				<div className="container">
-					<CurrentTimer
+					{isInterval && !isActive? "": (
+						<CurrentTimer
 						activitiesArray={activitiesArray}
 						currentIndex={currentIndex}
 						isActive={isActive}
 						isInterval={isInterval}
 						isStopwatch={isStopwatch}
-						loops={loops}
-						setCurrentTimer={setCurrentTimer}
-						setLoops={setLoops}
-						timer={isStopwatch ? time : currentTimer}
-					/>
-					<Timers
-						activitiesArray={activitiesArray}
-						currentIndex={currentIndex}
-						currentTimer={currentTimer}
-						handleAddLoop={handleAddLoop}
-						handleAddTimer={handleAddTimer}
-						handleDecreaseTime={handleDecreaseTime}
-						handleIncreaseTime={handleIncreaseTime}
-						handleRemoveLoop={handleRemoveLoop}
-						handleRemoveTimer={handleRemoveTimer}
-						handleReset={handleReset}
-						handleStart={handleStart}
-						isActive={isActive}
-						isCountdown={isCountdown}
-						isInterval={isInterval}
-						isStopwatch={isStopwatch}
-						loops={loops}
-						setActivitiesArray={setActivitiesArray}
-						setCurrentIndex={setCurrentIndex}
-						setCurrentTimer={setCurrentTimer}
-						setLoops={setLoops}
+						sets={sets}
 						time={time}
-						timersArray={timersArray}
-					/>
+						timer={timerLogic()}
+						timeRemaining={timeRemaining}
+						timeElapsed={timeElapsed}
+						totalSets={totalSets}
+						/>
+						)
+					}
+					
+					{isInterval && isActive? "": (
+						<Timers
+							activitiesArray={activitiesArray}
+							currentIndex={currentIndex}
+							currentTimer={currentTimer}
+							handleActivityChange={handleActivityChange}
+							handleAddLoop={handleAddLoop}
+							handleAddTimer={handleAddTimer}
+							handleDecreaseTime={handleDecreaseTime}
+							handleIncreaseTime={handleIncreaseTime}
+							handleRemoveLoop={handleRemoveLoop}
+							handleRemoveTimer={handleRemoveTimer}
+							isCountdown={isCountdown}
+							isInterval={isInterval}
+							isStopwatch={isStopwatch}
+							totalSets={totalSets}
+							setCurrentIndex={setCurrentIndex}
+							setCurrentTimer={setCurrentTimer}
+							timersArray={timersArray}
+						/>
+						)
+					}
+					
 					<ControlButtons
 						active={isActive}
 						handleAddLoop={handleAddLoop}
@@ -247,7 +306,7 @@ function StopWatch() {
 						isInterval={isInterval}
 						isPaused={isPaused}
 						isStopwatch={isStopwatch}
-						loops={loops}
+						sets={sets}
 					/>
 				</div>
 			) : ""
