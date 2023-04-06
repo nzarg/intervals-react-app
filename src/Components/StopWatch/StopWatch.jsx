@@ -81,7 +81,7 @@ function StopWatch() {
 		if (isInterval) {
 			let totalIntervalsIndex = 0;
 			if (timersArray.length === currentIndex) {
-				if (sets < totalSets -1) {
+				if (sets < totalSets - 1) {
 					setSets(sets + 1);
 					setCurrentIndex(0);
 					setTime(0);
@@ -101,7 +101,7 @@ function StopWatch() {
 		};
 		return timer
 	};
-	
+
 	const handleStart = () => {
 		setIsActive(true);
 		setIsPaused(false);
@@ -123,6 +123,7 @@ function StopWatch() {
 		};
 	};
 
+	///Stopwatch
 	const handleLap = () => {
 		if (isActive) {
 			setBestLapIndex(0);
@@ -160,7 +161,7 @@ function StopWatch() {
 		setGoBack(true);
 		backgroundIsBlack();
 	};
-
+	//Intervals
 	const handleIntevals = () => {
 		setIsCountdown(false);
 		setIsInterval(true);
@@ -172,13 +173,14 @@ function StopWatch() {
 		setGoBack(true);
 		backgroundIsBlack();
 	};
-
+	//Menu
 	const handleGoBack = () => {
 		setGoBack(false);
 		handleReset();
 		backgroundIsBlack();
 	};
 
+	//Intervals
 	const handleAddTimer = () => {
 		setTimersArray(timersArray => {
 			return [...timersArray, 0]
@@ -233,12 +235,53 @@ function StopWatch() {
 		setActivitiesArray(newArray);
 		console.log(activitiesArray)
 	};
-	const intervalsTotal = timersArray.reduce((a,b)=>a+b,0);
+	const intervalsTotal = timersArray.reduce((a, b) => a + b, 0);
 
 	const timeElapsed = intervalsTotal * sets + time;
-	
+
 	const timeRemaining = intervalsTotal * totalSets - timeElapsed;
 
+	const Container = (
+		<div className="container">
+			{isInterval && !isActive ? "" : (
+				<CurrentTimer
+					activitiesArray={activitiesArray}
+					currentIndex={currentIndex}
+					isActive={isActive}
+					isInterval={isInterval}
+					isStopwatch={isStopwatch}
+					sets={sets}
+					time={time}
+					timer={timerLogic()}
+					timeRemaining={timeRemaining}
+					timeElapsed={timeElapsed}
+					totalSets={totalSets}
+				/>
+			)
+			}
+			{isInterval && isActive ? "" : (
+				<Timers
+					activitiesArray={activitiesArray}
+					currentIndex={currentIndex}
+					currentTimer={currentTimer}
+					handleActivityChange={handleActivityChange}
+					handleAddLoop={handleAddLoop}
+					handleAddTimer={handleAddTimer}
+					handleDecreaseTime={handleDecreaseTime}
+					handleIncreaseTime={handleIncreaseTime}
+					handleRemoveLoop={handleRemoveLoop}
+					handleRemoveTimer={handleRemoveTimer}
+					isCountdown={isCountdown}
+					isInterval={isInterval}
+					isStopwatch={isStopwatch}
+					totalSets={totalSets}
+					setCurrentIndex={setCurrentIndex}
+					setCurrentTimer={setCurrentTimer}
+					timersArray={timersArray}
+				/>
+			)
+			}
+		</div>);
 
 	return (
 		<div id="stop-watch" className="stop-watch">
@@ -249,68 +292,20 @@ function StopWatch() {
 				handleIntevals={handleIntevals}
 				handleStopwatch={handleStopwatch}
 			/>
-			{goBack ? (
-				<div className="container">
-					{isInterval && !isActive? "": (
-						<CurrentTimer
-						activitiesArray={activitiesArray}
-						currentIndex={currentIndex}
-						isActive={isActive}
-						isInterval={isInterval}
-						isStopwatch={isStopwatch}
-						sets={sets}
-						time={time}
-						timer={timerLogic()}
-						timeRemaining={timeRemaining}
-						timeElapsed={timeElapsed}
-						totalSets={totalSets}
-						/>
-						)
-					}
-					
-					{isInterval && isActive? "": (
-						<Timers
-							activitiesArray={activitiesArray}
-							currentIndex={currentIndex}
-							currentTimer={currentTimer}
-							handleActivityChange={handleActivityChange}
-							handleAddLoop={handleAddLoop}
-							handleAddTimer={handleAddTimer}
-							handleDecreaseTime={handleDecreaseTime}
-							handleIncreaseTime={handleIncreaseTime}
-							handleRemoveLoop={handleRemoveLoop}
-							handleRemoveTimer={handleRemoveTimer}
-							isCountdown={isCountdown}
-							isInterval={isInterval}
-							isStopwatch={isStopwatch}
-							totalSets={totalSets}
-							setCurrentIndex={setCurrentIndex}
-							setCurrentTimer={setCurrentTimer}
-							timersArray={timersArray}
-						/>
-						)
-					}
-					
-					<ControlButtons
-						active={isActive}
-						handleAddLoop={handleAddLoop}
-						handleAddTimer={handleAddTimer}
-						handleDecreaseTime={handleDecreaseTime}
-						handleIncreaseTime={handleIncreaseTime}
-						handleLap={handleLap}
-						handlePauseResume={handlePauseResume}
-						handleRemoveLoop={handleRemoveLoop}
-						handleRemoveTimer={handleRemoveTimer}
-						handleReset={handleReset}
-						handleStart={handleStart}
-						isInterval={isInterval}
-						isPaused={isPaused}
-						isStopwatch={isStopwatch}
-						sets={sets}
-					/>
-				</div>
-			) : ""
+			{goBack ? Container : ""
 			}
+			{goBack?(
+				<ControlButtons
+				active={isActive}
+				handleLap={handleLap}
+				handlePauseResume={handlePauseResume}
+				handleReset={handleReset}
+				handleStart={handleStart}
+				isInterval={isInterval}
+				isPaused={isPaused}
+				isStopwatch={isStopwatch}
+			/>
+			) :""}
 		</div>
 	);
 }

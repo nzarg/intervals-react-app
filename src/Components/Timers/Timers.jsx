@@ -20,7 +20,7 @@ export default function Timers(props) {
 	);
 
   return (
-    <div id="timers" className="timers">
+    <div id="timers" className={props.isInterval?"timers intervals":"timers lap"}>
       {props.isInterval? LoopButtons: ""}
       {props.timersArray.map((timer, index) => {
         return (

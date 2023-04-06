@@ -31,7 +31,7 @@
 }
 
 .btn-text {
-  font-size: 2.5vh;
+  font-size: 1rem;
   height: 10vh;
   margin: 2% 1%;
   min-width: 35vw;
@@ -51,10 +51,6 @@
 }
 .btn-menu {
   border-radius: 2.5vh;
-  font-size: 3vh;
-  margin: 5% 0;
-  min-width: 70vw;
-  min-height: 20vh;
 }
 
 .btn-wide {
@@ -63,4 +59,27 @@
 
 .red-back{
   background-color: #e42a2a;
+}
+
+.btn-wider{
+  min-width: 15vw;
+  height: 5vh;
+}
+
+@media (orientation: landscape) {
+  .btn-menu {
+    font-size: 5vh;
+    margin: 1%;
+    min-width: 30vw;
+    min-height: 50vh;
+  }
+}
+
+@media (orientation: portrait) {
+  .btn-menu {
+    font-size: 3vh;
+    margin: 5% 0;
+    min-width: 70vw;
+    min-height: 20vh;
+  }
 }

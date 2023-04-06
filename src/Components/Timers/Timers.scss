@@ -2,10 +2,26 @@
 	align-items: center;
 	flex-direction: column;
   display: flex;
-  height: 25vh;
+  height: 70vh;
   overflow-x: hidden;
   overflow-y: scroll;
   width: 100% ;
 }
 
+@media (orientation: landscape) {
+  .intervals {
+    height: 60vh;
+  }
+  .lap {
+    height: 20vh;
+  }
+}
 
+@media (orientation: portrait) {
+  .intervals {
+    height: 70vh;
+  }
+  .lap {
+    height: 30vh;
+  }
+}

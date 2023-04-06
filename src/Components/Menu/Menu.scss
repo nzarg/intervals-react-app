@@ -3,13 +3,12 @@
   box-sizing: border-box;
   display: flex;
   max-height: 90vh;
-  min-height: 5vh;
+  min-height: 10vh;
   justify-content: center;
   width: 100%;
 }
 
 .menu-column {
-  flex-direction: column;
   height: 100vh;
 }
 
@@ -18,4 +17,16 @@
   left: 0;
   top: 0;
   padding: 10% 5% 5% 5%;
+}
+
+@media (orientation: landscape) {
+  .menu-column {
+    flex-direction: row;
+  }
+}
+
+@media (orientation: portrait) {
+  .menu-column {
+    flex-direction: column;
+  }
 }
