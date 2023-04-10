@@ -57,7 +57,7 @@ export default function CurrentTimer(props) {
 	);
 
 	return (
-		<div id="current-timer" className="current-timer">
+		<div id="current-timer" className={props.isCountdown? "current-timer countdown" : "current-timer"}>
 			{props.isInterval && props.isActive ? CurrentActivity : ""}
 			<TimerDisplay
 				timer={props.timer}

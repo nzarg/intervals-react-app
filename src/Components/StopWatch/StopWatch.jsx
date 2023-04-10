@@ -250,6 +250,7 @@ function StopWatch() {
 					isActive={isActive}
 					isInterval={isInterval}
 					isStopwatch={isStopwatch}
+					isCountdown={isCountdown}
 					sets={sets}
 					time={time}
 					timer={timerLogic()}
@@ -271,6 +272,7 @@ function StopWatch() {
 					handleIncreaseTime={handleIncreaseTime}
 					handleRemoveLoop={handleRemoveLoop}
 					handleRemoveTimer={handleRemoveTimer}
+					isActive={isActive}
 					isCountdown={isCountdown}
 					isInterval={isInterval}
 					isStopwatch={isStopwatch}

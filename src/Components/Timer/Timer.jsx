@@ -17,10 +17,10 @@ export default function Timer(props) {
 			}
 			{props.isInterval ? (
 				<div
-					className="close-tab"
+					className="btn close-tab"
 					onClick={() => props.handleRemoveTimer(props.index)}
 				>
-					x
+					X
 				</div>
 			) : ""
 			}
@@ -43,7 +43,7 @@ export default function Timer(props) {
 				/>
 				) : ""
 			}
-			{props.isInterval || props.isCountdown? (
+			{(props.isInterval || props.isCountdown) && !props.isActive? (
 				<div className="btn-grp btn-time">
 					<div 
 						className={`btn btn-small${props.isCountdown?' btn-wider':''}`}

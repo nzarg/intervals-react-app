@@ -55,10 +55,11 @@ font-size: 2vh;
 	width: 33%;
 }
 
-
-
 .current-information .mili-sec{
 	color: white;
+}
+.countdown {
+	height: 20vh;
 }
 
 @media (orientation: landscape) {
@@ -68,7 +69,6 @@ font-size: 2vh;
 	.current-information .digits{
 		font-size: 5vh;
 	}
-
 }
 
 @media (orientation: portrait) {
