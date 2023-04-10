@@ -1,7 +1,7 @@
 .stop-watch{
 	align-items: center;
 	display: flex;
-	height: 100vh;
+	height: 100svh;
 	flex-direction: column;
 	overflow: hidden;
 	width: 100%;
@@ -17,14 +17,14 @@
 
 @media (orientation: landscape) {
 	.container{
-		height: 60vh;
+		height: 60svh;
 	}
 
 }
 
 @media (orientation: portrait) {
 	.container{
-		height: 70vh;
+		height: 70svh;
 	}
 
 }
