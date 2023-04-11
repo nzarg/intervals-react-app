@@ -2,7 +2,7 @@
 	align-items: center;
 	flex-direction: column;
   display: flex;
-  height: 70vh;
+  height: 70svh;
   overflow-x: hidden;
   overflow-y: auto;
   width: 100% ;
@@ -14,18 +14,18 @@
 
 @media (orientation: landscape) {
   .intervals {
-    height: 60vh;
+    height: 60svh;
   }
   .lap {
-    height: 20vh;
+    height: 20svh;
   }
 }
 
 @media (orientation: portrait) {
   .intervals {
-    height: 70vh;
+    height: 70svh;
   }
   .lap {
-    height: 30vh;
+    height: 50svh;
   }
 }

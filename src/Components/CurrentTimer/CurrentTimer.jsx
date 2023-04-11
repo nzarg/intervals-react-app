@@ -5,27 +5,28 @@ import "./CurrentTimer.scss";
 export default function CurrentTimer(props) {
 
 	const CurrentActivity = (
-		<div className="activity">
+		<div className="row">
+			<div className="activity">
 			{props.activitiesArray[props.currentIndex] || " "}
 		</div>
+		<div className="activity next-activity">
+		{props.currentIndex === props.activitiesArray.length - 1 && props.sets === 1 ?
+			(
+				'NEXT: FINISH'
+			) :
+			props.currentIndex === props.activitiesArray.length - 1 ?
+				(
+					`NEXT: ${props.activitiesArray[0]}`
+				) :
+				(
+					`NEXT: ${props.activitiesArray[props.currentIndex + 1] || ""}`
+				)
+		}
+	</div>
+		</div>
+		
 	);
 
-	const NextActivity = (
-		<div className="activity next-activity">
-			{props.currentIndex === props.activitiesArray.length - 1 && props.sets === 1 ?
-				(
-					'NEXT: FINISH'
-				) :
-				props.currentIndex === props.activitiesArray.length - 1 ?
-					(
-						`NEXT: ${props.activitiesArray[0]}`
-					) :
-					(
-						`NEXT: ${props.activitiesArray[props.currentIndex + 1] || ""}`
-					)
-			}
-		</div>
-	);
 
 	const CurrentInformation = (
 		<div className="current-information">
@@ -63,7 +64,6 @@ export default function CurrentTimer(props) {
 				timer={props.timer}
 				miliseconds={true}
 			/>
-			{props.isInterval && props.isActive ? NextActivity : ""}
 			{props.isInterval && props.isActive ? CurrentInformation : ''}
 		</div>
 	);
