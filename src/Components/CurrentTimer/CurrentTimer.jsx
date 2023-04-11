@@ -7,24 +7,24 @@ export default function CurrentTimer(props) {
 	const CurrentActivity = (
 		<div className="row">
 			<div className="activity">
-			{props.activitiesArray[props.currentIndex] || " "}
+				{props.activitiesArray[props.currentIndex] || " "}
+			</div>
+			<div className="activity next-activity">
+				{props.currentIndex === props.activitiesArray.length - 1 && props.sets === 1 ?
+					(
+						'NEXT: FINISH'
+					) :
+					props.currentIndex === props.activitiesArray.length - 1 ?
+						(
+							`NEXT: ${props.activitiesArray[0]}`
+						) :
+						(
+							`NEXT: ${props.activitiesArray[props.currentIndex + 1] || ""}`
+						)
+				}
+			</div>
 		</div>
-		<div className="activity next-activity">
-		{props.currentIndex === props.activitiesArray.length - 1 && props.sets === 1 ?
-			(
-				'NEXT: FINISH'
-			) :
-			props.currentIndex === props.activitiesArray.length - 1 ?
-				(
-					`NEXT: ${props.activitiesArray[0]}`
-				) :
-				(
-					`NEXT: ${props.activitiesArray[props.currentIndex + 1] || ""}`
-				)
-		}
-	</div>
-		</div>
-		
+
 	);
 
 
@@ -58,7 +58,7 @@ export default function CurrentTimer(props) {
 	);
 
 	return (
-		<div id="current-timer" className={props.isCountdown? "current-timer countdown" : "current-timer"}>
+		<div id="current-timer" className={props.isCountdown ? "current-timer countdown" : "current-timer"}>
 			{props.isInterval && props.isActive ? CurrentActivity : ""}
 			<TimerDisplay
 				timer={props.timer}

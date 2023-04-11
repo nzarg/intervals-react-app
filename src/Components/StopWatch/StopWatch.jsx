@@ -23,6 +23,7 @@ function StopWatch() {
 	const [timersArray, setTimersArray] = useState([0]);
 	const [worstLapIndex, setWorstLapIndex] = useState(0);
 
+	//time
 	useEffect(() => {
 		let interval = null;
 
@@ -39,8 +40,13 @@ function StopWatch() {
 		};
 	}, [isActive, isPaused]);
 
-	const backgroundIsBlack = () => {
+	//utilities file
+	const blackBaclground = () => {
 		document.getElementById("stop-watch").classList.remove('finish');
+	}
+
+	const finishBackground = () => {
+		document.getElementById("stop-watch").classList.add('finish');
 	}
 
 	//Stopwatch logic
@@ -75,7 +81,12 @@ function StopWatch() {
 		};
 
 		if (isCountdown) {
-			timer = timersArray[currentIndex] - time;
+			if (timersArray[currentIndex] > time) {
+				timer = timersArray[currentIndex] - time;
+			} else {
+				handleReset();
+				finishBackground();
+			}
 		};
 
 		if (isInterval) {
@@ -87,8 +98,7 @@ function StopWatch() {
 					setTime(0);
 				} else {
 					handleReset();
-					const stopWatch = document.getElementById("stop-watch");
-					stopWatch.classList.add('finish');
+					finishBackground();
 				}
 			};
 			for (let i = 0; i <= currentIndex; i++) {
@@ -105,7 +115,7 @@ function StopWatch() {
 	const handleStart = () => {
 		setIsActive(true);
 		setIsPaused(false);
-		backgroundIsBlack();
+		blackBaclground();
 	};
 
 	const handlePauseResume = () => {
@@ -148,19 +158,20 @@ function StopWatch() {
 		setTimersArray([]);
 		setTime(0);
 		setGoBack(true);
-		backgroundIsBlack();
+		blackBaclground();
 	};
 
 	const handleCountdown = () => {
 		setIsCountdown(true);
 		setIsInterval(false);
 		setIsStopwatch(false);
-		setTimersArray([300000])
+		setTimersArray([2000])
 		setTime(0);
 		setSets(1);
 		setGoBack(true);
-		backgroundIsBlack();
+		blackBaclground();
 	};
+
 	//Intervals
 	const handleIntevals = () => {
 		setIsCountdown(false);
@@ -171,13 +182,14 @@ function StopWatch() {
 		setTime(0);
 		setTotalSets(2);
 		setGoBack(true);
-		backgroundIsBlack();
+		blackBaclground();
 	};
+
 	//Menu
 	const handleGoBack = () => {
 		setGoBack(false);
 		handleReset();
-		backgroundIsBlack();
+		blackBaclground();
 	};
 
 	//Intervals
@@ -296,18 +308,18 @@ function StopWatch() {
 			/>
 			{goBack ? Container : ""
 			}
-			{goBack?(
+			{goBack ? (
 				<ControlButtons
-				active={isActive}
-				handleLap={handleLap}
-				handlePauseResume={handlePauseResume}
-				handleReset={handleReset}
-				handleStart={handleStart}
-				isInterval={isInterval}
-				isPaused={isPaused}
-				isStopwatch={isStopwatch}
-			/>
-			) :""}
+					active={isActive}
+					handleLap={handleLap}
+					handlePauseResume={handlePauseResume}
+					handleReset={handleReset}
+					handleStart={handleStart}
+					isInterval={isInterval}
+					isPaused={isPaused}
+					isStopwatch={isStopwatch}
+				/>
+			) : ""}
 		</div>
 	);
 }
