@@ -2,58 +2,57 @@ import React from "react";
 import TimerDisplay from "../TimerDisplay/TimerDisplay";
 import "./Timer.scss";
 
-export default function Timer(props) {	
+export default function Timer(props) {
 	return (
 		<div id={"timer-" + props.index} className="timer">
 			{props.isStopwatch ? (
 				<div
 					id={"lap-" + props.index}
 					className="activity"
-					placeholder="lap" 
+					placeholder="lap"
 				>
-					{`Lap ${props.index+1}`}
+					{`Lap ${props.index + 1}`}
 				</div>
 			) : ""
 			}
 			{props.isInterval ? (
 				<div
-					className="btn close-tab"
+					className="close-tab"
 					onClick={() => props.handleRemoveTimer(props.index)}
 				>
-					X
+					{props.removeTimerIcon}
 				</div>
 			) : ""
 			}
 			{props.isInterval ? (
-				<input 
-					id={"activity-" + props.index} 
-					className="activity" 
-					placeholder="Activity" 
-					maxLength="9" 
-					onChange={(event)=>props.handleActivityChange(event, props.index)} 
+				<input
+					id={"activity-" + props.index}
+					className="activity"
+					placeholder="Activity"
+					maxLength="9"
+					onChange={(event) => props.handleActivityChange(event, props.index)}
 					value={props.activitiesArray[props.index]}
-					onClick={(e)=>e.target.select()}
+					onClick={(e) => e.target.select()}
 				/>
 			) : ""
 			}
 			{props.isInterval || props.isStopwatch ? (
-				<TimerDisplay 
+				<TimerDisplay
 					timer={props.timer}
 					miliseconds={props.isStopwatch}
 				/>
-				) : ""
+			) : ""
 			}
-			{(props.isInterval || props.isCountdown) && !props.isActive? (
+			{(props.isInterval || props.isCountdown) && !props.isActive ? (
 				<div className="btn-grp btn-time">
-					<div 
-						className={`btn btn-small${props.isCountdown?' btn-wider':''}`}
+					<div
 						onClick={() => props.handleIncreaseTime(props.index)}
 						placeholder="+15 seconds">
-						+
+						{props.increaseTimeIcon}
 					</div>
-					<div className={`btn btn-small${props.isCountdown?' btn-wider':''}`}
+					<div
 						onClick={() => props.handleDecreaseTime(props.index)}>
-						-
+						{props.decreaseTimeIcon}
 					</div>
 				</div>) : ""
 			}

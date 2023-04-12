@@ -1,31 +1,27 @@
-.current-timer{
+.current-timer {
 	align-items: center;
 	display: flex;
-  flex-direction: column;
+	flex-direction: column;
 	width: 100%;
 	color: #f5f5f5;
 }
-.current-timer .clock{
+
+.current-timer .clock {
 	display: flex;
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 	justify-content: center;
-	width: 40%;
-}
-
-.current-timer .mili-sec{
-	color: #e42a2a;
-	padding-right: 5%;
+	width: 33%;
 }
 
 .current-timer .activity {
-  color:#f5f5f5;
+	color: #f5f5f5;
 	font-weight: bold;
+	font-size: 2rem;
 	text-transform: uppercase;
-  text-align: center;
-	width: 50%;
+	text-align: center;
 }
 
-.current-timer .next-activity{
+.current-timer .next-activity {
 	color: #e42a2a;
 }
 
@@ -33,55 +29,64 @@
 	color: #f5f5f5;
 }
 
-.current-information{
-width: 100%;
-margin-bottom: 5%;
-font-size: 1rem;
+.current-information {
+	width: 100%;
+	margin-bottom: 5%;
+	font-size: 1rem;
 }
-.row{
+
+.row {
 	display: flex;
+	flex-wrap: wrap;
 	width: 100%;
 }
 
-.col{
+.col {
 	font-size: 1rem;
 	text-align: center;
 	width: 33%;
 }
 
-.current-information .mili-sec{
+.current-information .mili-sec {
 	color: white;
 }
+
 .countdown {
 	height: 20svh;
 }
 
 @media (orientation: landscape) {
-	.current-timer{
+	.current-timer {
 		height: 40svh;
 	}
-	.current-timer .digits{
+
+	.current-timer .digits {
 		font-size: 5.5rem;
 	}
-	.current-information .digits{
+
+	.current-information .digits {
 		font-size: 1rem;
 	}
+
 	.current-timer .activity {
-		font-size: 2rem;
+		width: 48%;
 	}
 }
 
 @media (orientation: portrait) {
-	.current-timer{
+	.current-timer {
 		height: 20svh;
 	}
-	.current-timer .digits{
+
+	.current-timer .digits {
 		font-size: 4.5rem;
 	}
-	.current-information .digits{
+
+	.current-information .digits {
 		font-size: 1rem;
 	}
+
 	.current-timer .activity {
-		font-size: 1.5rem;
+		width: 100%;
 	}
 }

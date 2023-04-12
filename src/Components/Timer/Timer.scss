@@ -10,9 +10,8 @@
 .clock{
 	display: flex;
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
-	justify-content: flex-end;
-	padding-right: 3%;
-	width: 50%;
+	justify-content: center;
+	width: 37%;
 }
 .digits{
 	font-size: 1.5rem;
@@ -20,7 +19,6 @@
 
 .mili-sec{
 	color: #e42a2a;
-	padding-right: 5%;
 }
 
 .activity {
@@ -28,7 +26,7 @@
 	font-weight: bold;
 	padding-left: 2%;
 	text-transform: uppercase;
-	width: 40%;
+	width: 33%;
 }
 
 .bestLap{
@@ -41,7 +39,7 @@
 
 .close-tab{
 	text-align: center;
-	padding: 2% 3%;
+	width: 10%;
 }
 
 .timers .mili-sec{

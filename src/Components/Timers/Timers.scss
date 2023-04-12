@@ -12,6 +12,14 @@
 	overflow: hidden;
 }
 
+.icon-small{
+  height: 30px;
+}
+
+.icon-big {
+  height: 60px;
+}
+
 @media (orientation: landscape) {
   .intervals {
     height: 60svh;

@@ -13,7 +13,8 @@
 
 .btn-time {
   padding: 2% 0;
-  width: 30%;
+  width: 20%;
+  justify-content: space-evenly;
 }
 
 .btn-loops{
@@ -40,8 +41,6 @@
 
 .btn-small {
   font-size: 1.5rem;
-  margin: 0 1%;
-  padding: 5% 16% 7% 16%;
 }
 
 .btn-small-loops {
@@ -51,17 +50,15 @@
 }
 .btn-menu {
   border-radius: 2.5svh;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
+  flex-direction: column;
 }
 
 .red-back{
   background-color: #e42a2a;
 }
 
-.btn-wider{
-  min-width: 15vw;
-  height: 5svh;
-}
+
 
 @media (orientation: landscape) {
   .btn-menu {

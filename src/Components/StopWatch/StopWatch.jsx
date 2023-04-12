@@ -245,7 +245,6 @@ function StopWatch() {
 			...activitiesArray.slice(index + 1)
 		];
 		setActivitiesArray(newArray);
-		console.log(activitiesArray)
 	};
 	const intervalsTotal = timersArray.reduce((a, b) => a + b, 0);
 
