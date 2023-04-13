@@ -36,7 +36,7 @@ export default function Timers(props) {
 
   const increaseTimeIcon = (
     <div className={props.isCountdown?"icon-big" : "icon-small"}>
-      <svg width="auto" height="auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g id="Edit / Add_Plus_Circle">
           <path id="Vector" d="M8 12H12M12 12H16M12 12V16M12 12V8M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21Z" stroke="#f5f5f5" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
         </g>
@@ -46,7 +46,7 @@ export default function Timers(props) {
 
   const decreaseTimeIcon = (
     <div className={props.isCountdown?"icon-big" : "icon-small"}>
-      <svg width="auto" height="auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g id="Edit / Remove_Minus_Circle">
           <path id="Vector" d="M8 12H16M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21Z" stroke="#f5f5f5" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
         </g>
@@ -66,7 +66,7 @@ export default function Timers(props) {
 
   const removeLoopIcon = (
     <div>
-      <svg transform="scale(-1 -1)" width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg transform="rotate(180)" width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g id="Edit / Delete_Row">
           <path id="Vector" d="M14 16H20M21 10V9C21 7.89543 20.1046 7 19 7H5C3.89543 7 3 7.89543 3 9V11C3 12.1046 3.89543 13 5 13H11" stroke="#f5f5f5" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
         </g>

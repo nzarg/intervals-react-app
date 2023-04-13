@@ -73,7 +73,7 @@ function StopWatch() {
 		};
 	}, [bestLapIndex, isStopwatch, timersArray, worstLapIndex]);
 
-	// Intervals Logic	
+	// Timer Logic	
 	const timerLogic = () => {
 		let timer = 0;
 		if (isStopwatch) {
@@ -83,10 +83,11 @@ function StopWatch() {
 		if (isCountdown) {
 			if (timersArray[currentIndex] > time) {
 				timer = timersArray[currentIndex] - time;
-			} else {
+			};
+			if(isActive && timer === 0){
 				handleReset();
 				finishBackground();
-			}
+			};
 		};
 
 		if (isInterval) {
