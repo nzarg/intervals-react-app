@@ -166,7 +166,7 @@ function StopWatch() {
 		setIsCountdown(true);
 		setIsInterval(false);
 		setIsStopwatch(false);
-		setTimersArray([2000])
+		setTimersArray([120000])
 		setTime(0);
 		setSets(1);
 		setGoBack(true);
@@ -179,7 +179,7 @@ function StopWatch() {
 		setIsInterval(true);
 		setIsStopwatch(false);
 		setActivitiesArray(['squats', 'rest'])
-		setTimersArray([2000, 2000])
+		setTimersArray([30000, 15000])
 		setTime(0);
 		setTotalSets(2);
 		setGoBack(true);
